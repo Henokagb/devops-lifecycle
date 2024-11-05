@@ -36,11 +36,11 @@ class UserList(APIView):
 
 
     @swagger_auto_schema(request_body=UserSerializer)
-    def post(self, request): 
+    def post(self, request):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             data = serializer.validated_data
-            if validMail(data['mail']) and validAge(data['age']) and validUsername(data['username']) and validProfession(data['profession']):
+            if validMail(data['mail']) and validAge(data['age']) and validname(data['name']) and validProfession(data['profession']):
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -80,8 +80,6 @@ class UserList(APIView):
         ),
     ]
     )
-
-    
     def put(self, request):
         user_id = request.query_params.get('id')
         if not user_id:

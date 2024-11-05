@@ -7,8 +7,8 @@ def validMail(mail):
     return False
 
 
-def validUsername(username):
-    if re.match('^[A-Za-z]+$', username):
+def validname(name):
+    if re.match('^[A-Za-z]+$', name):
         return True
     return False
 
@@ -18,4 +18,4 @@ def validProfession(profession):
     return False
 
 def validAge(age):
-    return age < 16 < 55
+    return 16 < age <= 60
