@@ -3,8 +3,25 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import User
 from .serializer import UserSerializer
+from django.contrib import admin
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
+
+from .modules.validInputs import *
 
 class UserList(APIView):
+
+    @swagger_auto_schema(
+    manual_parameters=[
+        openapi.Parameter(
+            "id",
+            openapi.IN_QUERY,
+            description="User ID",
+            type=openapi.TYPE_INTEGER,
+            required=False
+            ),
+        ]
+    )
     def get(self, request):
         user_id = request.query_params.get('id')
         if user_id:
@@ -13,17 +30,32 @@ class UserList(APIView):
             queryset = User.objects.all()
         
         serializer = UserSerializer(queryset, many=True)
-        if serializer.data != [] and user_id:
+        if serializer.data == [] and user_id:
             return Response({"error": "No user found"}, status=status.HTTP_404_NOT_FOUND)
         return Response(serializer.data)
 
-    def post(self, request):
+
+    @swagger_auto_schema(request_body=UserSerializer)
+    def post(self, request): 
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
+            data = serializer.validated_data
+            if validMail(data['mail']) and validAge(data['age']) and validUsername(data['username']) and validProfession(data['profession']):
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    @swagger_auto_schema(
+    manual_parameters=[
+        openapi.Parameter(
+            "id",
+            openapi.IN_QUERY,
+            description="User ID",
+            type=openapi.TYPE_INTEGER,
+            required=False
+            ),
+        ]
+    )
     def delete(self, request):
         user_id = request.query_params.get('id')
         if not user_id:
@@ -36,6 +68,20 @@ class UserList(APIView):
         except User.DoesNotExist:
             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
 
+    @swagger_auto_schema(
+        request_body=UserSerializer,
+        manual_parameters=[
+        openapi.Parameter(
+            "id",
+            openapi.IN_QUERY,
+            description="User ID to update",
+            type=openapi.TYPE_INTEGER,
+            required=True
+        ),
+    ]
+    )
+
+    
     def put(self, request):
         user_id = request.query_params.get('id')
         if not user_id:
@@ -50,3 +96,4 @@ class UserList(APIView):
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         except User.DoesNotExist:
             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
+
