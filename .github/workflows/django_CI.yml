@@ -25,20 +25,20 @@ jobs:
 
     - name: Install Dependencies
       run: |
-        python3.10 -m pip install --upgrade pip
+        python3 -m pip install --upgrade pip
         cd userapi
         pip3 install -r requirements.txt
 
     - name: create sqlite db
       run: |
         cd userapi
-        python3.10 manage.py makemigrations
-        python3.10 manage.py migrate
+        python3 manage.py makemigrations
+        python3 manage.py migrate
 
     - name: Run Tests
       run: |
         cd userapi
-        python3.10 manage.py test
+        python3 manage.py test 0.0.0.0:8000
 
     - name: Deploy on Netlify
       run: curl -X POST -d {} ${{ secrets.NETLIFY_BUILD_HOOK }}
