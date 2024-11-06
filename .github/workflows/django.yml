@@ -26,6 +26,11 @@ jobs:
         python3 -m pip install --upgrade pip
         cd userapi
         pip3 install -r requirements.txt
+    - name: create and test sqlite db
+      run: |
+        cd userapi
+        python3 manage.py makemigrations
+        python3 manage.py migrate
     - name: Run Tests
       run: |
         cd userapi
