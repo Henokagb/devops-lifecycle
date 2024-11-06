@@ -38,7 +38,7 @@ jobs:
     - name: Run Tests
       run: |
         cd userapi
-        python3 manage.py test 0.0.0.0:8000
+        python3 manage.py test
 
     - name: Deploy on Netlify
       run: curl -X POST -d {} ${{ secrets.NETLIFY_BUILD_HOOK }}
