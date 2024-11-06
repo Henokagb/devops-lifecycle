@@ -40,5 +40,5 @@ jobs:
         cd userapi
         python3 manage.py test
 
-    - name: Deploy on Netlify
+    - name: Deploy on Render
       run: curl -X POST -d {} ${{ secrets.RENDER_HOOK }}
