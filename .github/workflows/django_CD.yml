@@ -5,10 +5,8 @@ on:
     branches: [ "main" ]
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    container:
-      image: python:10
     steps:
       - uses: actions/checkout@v4
         with:
