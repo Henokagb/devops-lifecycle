@@ -56,12 +56,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-CORS_ALLOW_ALL_ORIGINS = True
 
-CORS_ALLOW_HEADERS = [
-    "X-CSRFTOKEN"
+CORS_ALLOWED_ORIGINS = [
+    "https://devops-lifecycle.onrender.com"
 ]
-
 
 ROOT_URLCONF = 'project.urls'
 
