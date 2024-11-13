@@ -95,3 +95,8 @@ class UserList(APIView):
         except User.DoesNotExist:
             return Response({"error": "User not found"}, status=status.HTTP_404_NOT_FOUND)
 
+class Healthcheck(APIView):
+    @swagger_auto_schema(
+    )
+    def get(self, request):
+        return Response({"Health check": "Healthy"}, status=status.HTTP_200_OK)
