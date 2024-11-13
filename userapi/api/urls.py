@@ -18,6 +18,7 @@ schema_view = get_schema_view(
    url='https://devops-lifecycle.onrender.com/api/'
 )
 
+
 urlpatterns = [
     path('users/', UserList.as_view()),
     path('swagger<format>', schema_view.without_ui(cache_timeout=0), name='schema-json'),
