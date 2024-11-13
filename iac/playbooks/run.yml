@@ -1,0 +1,6 @@
+---
+- hosts: userapi_server
+  become: true
+  roles:
+  - role: userapi/install
+    tags: install

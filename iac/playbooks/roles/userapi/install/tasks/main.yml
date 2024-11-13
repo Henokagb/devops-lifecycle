@@ -1,0 +1,31 @@
+- name: Add the repository of python installation
+  apt_repository:
+    repo: ppa:deadsnakes/ppa
+    state: present
+
+- name: Apt update
+  apt:
+    update_cache: yes
+
+- name: Install python
+  apt:
+    name:
+      - python3.10
+      - python3-pip
+
+- name: Install virtualenv
+  ansible.builtin.pip:
+    name: virtualenv
+
+- name: Install requirements in env
+  ansible.builtin.pip:
+    requirements: /home/vagrant/userapi/requirements.txt
+    virtualenv: /home/vagrant/my_env
+    virtualenv_python: /usr/bin/python3.10
+  
+- name: Migrate database and launch api
+  ansible.builtin.shell: |
+    bash -c "source /home/vagrant/my_env/bin/activate &&
+    python3 /home/vagrant/userapi/manage.py makemigrations && 
+    python3 /home/vagrant/userapi/manage.py migrate &&
+    nohup python3 /home/vagrant/userapi/manage.py runserver 0.0.0.0:80 > /dev/null 2>&1 &"
