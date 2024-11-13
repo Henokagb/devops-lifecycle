@@ -19,7 +19,6 @@ schema_view = get_schema_view(
    url = "https://devops-lifecycle.onrender.com/api/" if os.getenv("ENV") == "prod" else None
 )
 
-
 urlpatterns = [
     path('healthcheck/', Healthcheck.as_view()),
     path('users/', UserList.as_view()),
