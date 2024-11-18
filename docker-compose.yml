@@ -1,0 +1,10 @@
+
+services: 
+  app:
+    image: user-api-app
+    container_name: user-api-app
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    ports:
+      - 8000:8000
