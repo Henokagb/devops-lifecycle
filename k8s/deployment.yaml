@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: userapi-deployment
+  labels:
+    app: userapi
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: userapi
+  template:
+    metadata:
+      labels:
+        app: userapi
+    spec:
+      containers:
+      - name: userapi-image
+        image: henokoder/user-api-app
+        ports:
+        - containerPort: 8000

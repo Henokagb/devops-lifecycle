@@ -19,7 +19,6 @@ Vagrant.configure("2") do |config|
 
     config.vm.provision "ansible_local" do |ansible|
       ansible.playbook = "playbooks/run.yml"
-      # Only run the roles with these tags
       ansible.tags = ["install"]
     end
   
