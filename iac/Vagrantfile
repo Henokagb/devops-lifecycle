@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
       server.vm.box = "ubuntu/focal64"
       config.vm.network "forwarded_port", guest: 80, host: 8080
       config.vm.synced_folder "../userapi", "/home/vagrant/userapi", create: true, type: "rsync",
-      rsync__exclude: ["**/__pycache__/", "userapi/db.sqlite3", "**/migrations/*",]
+      rsync__exclude: ["**/__pycache__/", "userapi/data/db.sqlite3", "**/migrations/*",]
       server.vm.provider "virtualbox" do |vb|
         vb.name =  "userapi_server"
         vb.memory = 2048
