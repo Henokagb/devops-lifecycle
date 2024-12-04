@@ -1,5 +1,5 @@
 **/__pycache__/
-userapi/db.sqlite3
+userapi/data/db.sqlite3
 **/migrations/*
 !**/migrations/__init__.py
 .*
