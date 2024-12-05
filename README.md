@@ -1,2 +1,16 @@
 # devops-lifecycle
-This project involves the differents steps of the the lifecycle of a simple CRUD project.
+This project showcases the differents steps of the DevOps lifecycle of an API:
+
+-Code,
+
+-Test,
+
+-Continuous integration,
+
+-Continuous deployment,
+
+-Container orchestration,
+
+-Service mesh,
+
+-Monitoring
