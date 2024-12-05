@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: userapi-deployment-v2
+  labels:
+    app: userapi
+    version: v2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: userapi
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: userapi
+        version: v2
+    spec:
+      initContainers:
+      - name: is-volume-mounted
+        image: henokoder/user-api-app
+        command: ["sh", "-c", "cp -rn /app/data/* /mnt"]
+
+        volumeMounts:
+          - name: userapi-volume
+            mountPath: "/mnt"
+      containers:
+        - name: userapi-image
+          image: henokoder/user-api-app
+          ports:
+            - containerPort: 8000
+          volumeMounts:
+            - name: userapi-volume
+              mountPath: /app/data/
+      volumes:
+        - name: userapi-volume
+          persistentVolumeClaim:
+            claimName: userapi-pvc

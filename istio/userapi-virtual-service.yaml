@@ -1,0 +1,28 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: userapi-route-traffic
+spec:
+  hosts:
+  - userapi
+  http:
+  - match:
+    - method:
+        exact: "GET"
+    - method:
+        exact: "DELETE"
+    route:
+    - destination:
+        host: userapi
+        subset: v1
+      weight: 50
+  - match:
+    - method:
+        exact: "POST"
+    - method:
+        exact: "PUT"
+    route:
+    - destination:
+        host: userapi
+        subset: v2
+      weight: 50
