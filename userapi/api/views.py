@@ -99,4 +99,4 @@ class Healthcheck(APIView):
     @swagger_auto_schema(
     )
     def get(self, request):
-        return Response({"Health check": "Healthy"}, status=status.HTTP_200_OK)
+        return Response({"HealthCheck": "Healthy"}, status=status.HTTP_200_OK)
