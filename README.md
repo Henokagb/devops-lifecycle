@@ -9,6 +9,8 @@ This project showcases the differents steps of the DevOps lifecycle of a simple 
 
 -Continuous deployment,
 
+-Infrastructure as code,
+
 -Container orchestration,
 
 -Service mesh,
