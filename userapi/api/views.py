@@ -6,8 +6,16 @@ from .serializer import UserSerializer
 from django.contrib import admin
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
-
 from .modules.validInputs import *
+from prometheus_client import Counter, Gauge, generate_latest, CONTENT_TYPE_LATEST, Histogram, Summary
+from django.http import HttpResponse
+
+
+REQUEST_COUNT = Counter('http_requests_total', 'Total HTTP requests', ['method', 'endpoint', 'status'])
+HEALTH_CHECK = Gauge('api_healthcheck', 'Health check status of the API (1=healthy, 0=unhealthy)')
+REQUEST_LATENCY = Histogram('http_request_latency_seconds', 'Latency of HTTP requests', ['endpoint'])
+REQUEST_SUMMARY = Summary('http_request_processing_seconds', 'Time spent processing requests')
+
 
 class UserList(APIView):
 
@@ -99,4 +107,12 @@ class Healthcheck(APIView):
     @swagger_auto_schema(
     )
     def get(self, request):
-        return Response({"HealthCheck": "Healthy"}, status=status.HTTP_200_OK)
+        health_status = True
+        HEALTH_CHECK.set(1 if health_status else 0)
+        return Response({"HealthCheck": "Healthy" if health_status else "Unhealthy"}, status=status.HTTP_200_OK if health_status else status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+class PrometheusMetrics(APIView):
+    @swagger_auto_schema(
+    )
+    def get(self, request):
+        return HttpResponse(generate_latest(), content_type=CONTENT_TYPE_LATEST)
