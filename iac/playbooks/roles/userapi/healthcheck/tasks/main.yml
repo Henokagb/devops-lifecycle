@@ -1,0 +1,9 @@
+- name: Check the API health
+  uri:
+    url: http://127.0.0.1/api/healthcheck
+    return_content: yes
+  register: api_health
+
+- name: Print the API health
+  debug:
+    msg: "{{ api_health.content }}"

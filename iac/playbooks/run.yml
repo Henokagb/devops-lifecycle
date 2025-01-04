@@ -4,3 +4,7 @@
   roles:
   - role: userapi/install
     tags: install
+
+
+  - role: userapi/healthcheck
+    tags: check
