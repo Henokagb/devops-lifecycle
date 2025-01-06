@@ -1,18 +1,25 @@
 # devops-lifecycle
 This project showcases the differents steps of the DevOps lifecycle of a simple app:
 
--Code,
+-API Code: Python (Django), sqlite
 
--Test,
+-Test: Python (django.test.testcase, unittest)
 
--Continuous integration,
+-Continuous integration: Github actions
 
--Continuous deployment,
+-Continuous deployment: Github actions + Render
 
--Infrastructure as code,
+-Infrastructure as code: Vangrant, Ansible
 
--Container orchestration,
+-Contenerisation: Docker, Docker Compose
 
--Service mesh,
+-Container orchestration: Kubernetes
 
--Monitoring
+-Service mesh: Istio
+
+-Monitoring: Prometheus, Grafana
+
+## Prepare your environment
+
+
+
