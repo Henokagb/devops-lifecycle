@@ -269,4 +269,4 @@ kubectl delete pods userapi-deployment-v1-c56b565cb-5rh4j userapi-deployment-v2-
 ```
 
 While the deleted pods are being re created, check the status of the API on grafana:
-![](screenshots/screenshot19.png)
+![](screenshots/screenshot20.png)
