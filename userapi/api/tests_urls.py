@@ -1,7 +1,6 @@
-import unittest
-from django.test import Client
+from django.test import TestCase, Client
 
-class urlsTests(unittest.TestCase):
+class urlsTests(TestCase):
     def setUp(self):
         self.client = Client()
         self.user1 = {"name" : "test", "mail": "test@gmail.com", "age": 20, "profession": "test"}

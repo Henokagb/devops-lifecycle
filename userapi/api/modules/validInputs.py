@@ -1,6 +1,5 @@
 import re
 
-
 def validMail(mail):
     if re.match('^(?!.*[-_.]{2})[\w\-_.&]*[\@][\w\-]*[\w+\.]*[\.][a-zA-Z]+', mail):
         return True
