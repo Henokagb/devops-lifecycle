@@ -229,6 +229,13 @@ We also added to Prometheus config, a job to scrape data about the health of the
 ![](screenshots/screenshot14.png)
 
 Prometheus and grafana services have been created in the namespace istio-system.
+Check the status of their pods in the that namespace:
+```bash
+kubectl get pods -n istio-system
+```
+Wait for them to have the 'running' status before accessing them:
+![](screenshots/screenshot21.png)
+
 To access them:
 ```bash
 minikube service -n istio-system prometheus
