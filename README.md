@@ -110,10 +110,12 @@ Example with github:
 ![](screenshots/screenshot6.png)
 
 Each time, you will push something in your repository, the tests will be executing and the project will be deployed automatically.
+Note: We are using a free server instance on render which spin down with inactivity, so the first time you hit the link, the web page can be delayed by 50 seconds or more.
+
 Access the swagger of the production version of this repository API here: https://devops-lifecycle.onrender.com/api/swagger/
 
 
-## Iac
+## Infrastructure as code
 
 Here, we use Vangrant to automate the creation of a virtual machine with 1 cpu and 2048 of memory, and forward the 80 port of this machine to the 8080 of our machine.
 Then, we use Ansible, to provision the machine with the application and the environment needed to run it and a healthcheck.
@@ -125,6 +127,7 @@ vagrant box add ubuntu/focal64
 ```
 Choose virtualbox as provider.
 
+In the vagrant file, we used the synced folders option to allow the synchronisation between the project files from the host and the guest.
 Launch the creation and provision the vm:
 ```bash
 vagrant up
@@ -277,3 +280,12 @@ kubectl delete pods userapi-deployment-v1-c56b565cb-5rh4j userapi-deployment-v2-
 
 While the deleted pods are being re created, check the status of the API on grafana:
 ![](screenshots/screenshot20.png)
+
+## BONUSES
+- Usage of different tools and platforms instead of what has been passed in the labs: Render
+- Usage of different languages: Python
+- Using of another database: sqlite3
+- Integration of a documenting package to the source code: Swagger UI
+
+## Authors
+[@Loic Martins](https://github.com/lmdsti) and [@Hénok Agbodjogbe](https://github.com/Henokagb)
