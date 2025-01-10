@@ -109,7 +109,7 @@ Instead of hard coding the deploy_hook in your github action file, create an act
 Example with github:
 ![](screenshots/screenshot6.png)
 
-Each time, you will push something in your repository, the tests will be executing and the project will be deployed automatically.
+Each time, you will push something in your repository, the tests will be executed and the project will be deployed automatically.
 Note: We are using a free server instance on render which spin down with inactivity, so the first time you hit the link, the web page can be delayed by 50 seconds or more.
 
 Access the swagger of the production version of this repository API here: https://devops-lifecycle.onrender.com/api/swagger/
