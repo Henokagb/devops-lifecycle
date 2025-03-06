@@ -281,11 +281,5 @@ kubectl delete pods userapi-deployment-v1-c56b565cb-5rh4j userapi-deployment-v2-
 While the deleted pods are being re created, check the status of the API on grafana:
 ![](screenshots/screenshot20.png)
 
-## BONUSES
-- Usage of different tools and platforms instead of what has been passed in the labs: Render
-- Usage of different languages: Python
-- Using of another database: sqlite3
-- Integration of a documenting package to the source code: Swagger UI
-
 ## Authors
-[@Loic Martins](https://github.com/lmdsti) and [@Hénok Agbodjogbe](https://github.com/Henokagb)
+[@Hénok Agbodjogbe](https://github.com/Henokagb) and [@Loic Martins](https://github.com/lmdsti)
