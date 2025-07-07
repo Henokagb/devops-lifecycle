@@ -76,7 +76,9 @@ Get the list of users, Add, Update users informations and delete users thought t
 ## Running unittests on enpoints and functions
 
 The folder userapi/api contains two files for testing:
+
 -tests_functions.py: to test critical fonctions
+
 -tests_urls.py: to test the endpoints that are meant to be used by the user
 
 Launch the functions test by executing:
